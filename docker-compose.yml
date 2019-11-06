@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+        filetransfer:
+                image: thanakijwanavit/transfer.sh:latest
+                volumes:
+                        - filecache:/tmp
+                ports:
+                        - "8080:8080"
+                networks:
+                        - overlay
+                deploy:
+                        replicas: 1
+volumes:
+        filecache:
+networks:
+        overlay:
