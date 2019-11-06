@@ -1,7 +1,10 @@
 version: "3.7"
 services:
         filetransfer:
-                image: thanakijwanavit/transfer.sh:latest
+                build:
+                        context: ./dockerfile
+                        dockerfile: gdrive
+                image: thanakijwanavit/transfer.sh:gdrive
                 volumes:
                         - filecache:/tmp
                 ports:

@@ -1,0 +1,6 @@
+FROM dutchcoders/transfer.sh:latest
+EXEC "mkdir /gdrive"
+EXEC "touch auth.json"
+ENTRYPOINT ["/go/bin/transfersh", "--listener", ":8080", "--provider", "gdrive", "--basedir","/tmp/", "gdrive-client-json-filepath", "/gdrive/auth.json", "gdrive-local-config-path", "/tmp/" ,"gdrive-chunk-size","4 MB"]
+
+EXPOSE 8080
