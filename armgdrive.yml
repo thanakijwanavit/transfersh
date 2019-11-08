@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+        filetransfer:
+                build:
+                        context: ./dockerfile
+                        dockerfile: gdrive
+                image: thanakijwanavit/transfer.sh:gdrive
+                volumes:
+                        - filecache:/tmp
+                ports:
+                        - "8080:8080"
+                networks:
+                        - overlay
+                deploy:
+                        replicas: 1
+volumes:
+        filecache:
+networks:
+        overlay:

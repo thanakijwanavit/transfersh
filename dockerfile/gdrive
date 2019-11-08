@@ -1,6 +1,11 @@
-FROM dutchcoders/transfer.sh:latest
-EXEC "mkdir /gdrive"
-EXEC "touch auth.json"
-ENTRYPOINT ["/go/bin/transfersh", "--listener", ":8080", "--provider", "gdrive", "--basedir","/tmp/", "gdrive-client-json-filepath", "/gdrive/auth.json", "gdrive-local-config-path", "/tmp/" ,"gdrive-chunk-size","4 MB"]
+FROM golang:buster
+WORKDIR /
+RUN git clone https://github.com/dutchcoders/transfer.sh.git
+WORKDIR /transfer.sh/server/
+RUN go get ./... 
+#RUN find . -type f | xargs sed -i 's/transfer.sh/YOURSERVER/g'
+WORKDIR /transfer.sh
+RUN go build -o transfersh main.go
+ENTRYPOINT ["/transfer.sh/transfersh", "--listener", ":8080", "--provider", "gdrive", "--gdrive-client-json-filepath","/credentials/creden.json", "--basedir", "/tmp/", "gdrive-local-config-path", "/local_config/"]
 
 EXPOSE 8080
