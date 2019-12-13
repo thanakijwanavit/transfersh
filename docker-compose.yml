@@ -4,13 +4,15 @@ services:
                 build:
                         context: ./dockerfile
                         dockerfile: gdrive
-                image: thanakijwanavit/transfer.sh:gdrive
+                image: thanakijwanavit/transfersh:armlocal
                 volumes:
                         - filecache:/tmp
+                        - ./gdrivecreden:/credentials
                 ports:
                         - "8080:8080"
                 networks:
                         - overlay
+                entrypoint: /bin/sh
                 deploy:
                         replicas: 1
 volumes:

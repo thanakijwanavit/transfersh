@@ -1,14 +1,11 @@
 version: "3.7"
 services:
         filetransfer:
-            #build:
-            #context: ./dockerfile
-            #dockerfile: gdrive
-                image: thanakijwanavit/transfersh:armgdrive
+                image: thanakijwanavit/transfer.sh:armgdrive
                 volumes:
                         - filecache:/tmp
                         - ./gdrivecreden:/credentials
-                        - ./gdriveconfig:/local_config
+                        - ./gdriveconfig:/gdrive-local-config-path
                 ports:
                         - "8080:8080"
                 networks:
