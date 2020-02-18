@@ -1,12 +1,12 @@
-version: "3.7"
+version: "3"
 services:
         filetransfer:
             #build:
             #context: ./dockerfile
             #dockerfile: gdrive
-                image: thanakijwanavit/transfersh:armgdrive
+                image: thanakijwanavit/transfersh:gdrive
                 volumes:
-                        - filecache:/tmp
+                        - ./filecache:/tmp
                         - ./gdrivecreden:/credentials
                         - ./gdriveconfig:/local_config
                 ports:
@@ -15,7 +15,5 @@ services:
                         - overlay
                 deploy:
                         replicas: 1
-volumes:
-        filecache:
 networks:
         overlay:
